@@ -3,6 +3,12 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/golang-collections/collections"
+  packages = ["stack"]
+  revision = "604e922904d35e97f98a774db7881f049cd8d970"
+
+[[projects]]
+  branch = "master"
   name = "github.com/jcelliott/lumber"
   packages = ["."]
   revision = "dd349441af25132d146d7095c6693a15431fc9b1"
@@ -16,6 +22,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "ed599972e7e844622d3c9416aa143a5f74039c4a19d9d24a7f478b74008fc32a"
+  inputs-digest = "d81ee9b1aa137b32db0091cd1da29bc8fa84b9163df6f989f3bf803cb1fb5c3b"
   solver-name = "gps-cdcl"
   solver-version = 1

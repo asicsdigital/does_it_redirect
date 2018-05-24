@@ -36,3 +36,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/jcelliott/lumber"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/golang-collections/collections"
