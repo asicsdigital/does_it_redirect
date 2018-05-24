@@ -21,6 +21,8 @@ type parsedResponse struct {
 func main() {
   lumber.Info("initialized")
 
+  // redirects := make([]*url.URL, 0)
+
   app := cli.NewApp()
   app.EnableBashCompletion = true
 
@@ -58,9 +60,7 @@ func doAction(arg string) (parsedResponse, error) {
 
 func getUrl(u *url.URL) (parsedResponse, error) {
   client := &http.Client{
-    CheckRedirect: func(req *http.Request, via []*http.Request) error {
-      return http.ErrUseLastResponse
-    },
+    CheckRedirect: checkRedirect(),
   }
 
   req, err := http.NewRequest("GET", u.String(), nil)
@@ -74,6 +74,14 @@ func getUrl(u *url.URL) (parsedResponse, error) {
   defer resp.Body.Close()
 
   return parsedResponse{code: code, request: request, response:response, content: content}, err
+}
+
+type checkRedirectFunction func(*http.Request, []*http.Request) error
+
+func checkRedirect() checkRedirectFunction {
+  return func(req *http.Request, via []*http.Request) error {
+    return http.ErrUseLastResponse
+  }
 }
 
 func printResp(resp parsedResponse) error {
