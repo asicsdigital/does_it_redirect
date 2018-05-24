@@ -23,7 +23,7 @@ type parsedResponse struct {
 }
 
 func main() {
-  lumber.Info("initialized")
+  lumber.Debug("initialized")
 
 
   app := cli.NewApp()
@@ -51,7 +51,7 @@ func main() {
 }
 
 func doAction(arg string) (parsedResponse, error) {
-  lumber.Info("arg: %s\n", arg)
+  lumber.Debug("arg: %s\n", arg)
   // try to parse the arg as a url
   parsedUrl, err := url.Parse(arg)
 
@@ -62,11 +62,14 @@ func doAction(arg string) (parsedResponse, error) {
 }
 
 func getUrl(u *url.URL) (parsedResponse, error) {
+  urlString := u.String()
+  lumber.Info("site: %s\n", urlString)
+
   client := &http.Client{
     CheckRedirect: checkRedirect(),
   }
 
-  req, err := http.NewRequest("GET", u.String(), nil)
+  req, err := http.NewRequest("GET", urlString, nil)
   resp, err := client.Do(req)
 
   code := resp.StatusCode
@@ -84,7 +87,7 @@ type checkRedirectFunction func(*http.Request, []*http.Request) error
 
 func checkRedirect() checkRedirectFunction {
   return func(req *http.Request, via []*http.Request) error {
-    lumber.Info("redirected to: %s\n", req.URL.String())
+    lumber.Info("redirect: %s\n", req.URL.String())
     redirectsStack.Push(req.URL)
     return nil
   }

@@ -1,6 +1,7 @@
 ### https://raw.github.com/github/gitignore/d67d1cae9a6d1804851a816b15460600eea29a45/Go.gitignore
 
 does_it_redirect
+does_it_redirect_*
 
 # Binaries for programs and plugins
 *.exe
