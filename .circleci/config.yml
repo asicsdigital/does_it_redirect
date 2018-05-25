@@ -63,7 +63,7 @@ workflows:
               only: /.*/
       - build:
           requires:
-            - test:
+            - test
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+$/
@@ -71,7 +71,7 @@ workflows:
               ignore: /.*/
       - release:
           requires:
-            - build:
+            - build
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+$/
