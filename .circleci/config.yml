@@ -51,6 +51,7 @@ jobs:
           path: /artifacts
 
 workflows:
+  version: 2
   build:
     jobs:
       - test:
