@@ -66,11 +66,11 @@ jobs:
     <<: *docker_golang
 
     steps:
-      - run: mkdir -p /artifacts
+      - run: mkdir -p /tmp/workspace
       - attach_workspace:
-          at: /artifacts
+          at: /tmp/workspace
       - store_artifacts:
-          path: /artifacts
+          path: /tmp/workspace
 
 workflows:
   version: 2
