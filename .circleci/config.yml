@@ -31,6 +31,9 @@ jobs:
           paths:
             - "/go/pkg"
 
+      - store_artifacts:
+          path: .test_results
+          destination: raw_test_output
       - store_test_results:
           path: .test_results
 
