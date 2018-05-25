@@ -24,7 +24,6 @@ jobs:
       - run: |
           trap "go-junit-report <.test_results/golang/go-test.out > .test_results/junit/results.xml" EXIT
           go test -v ./... | tee .test_results/golang/go-test.out
-      - run: cat .test_results/junit/results.xml
 
       - save_cache:
           key: v1-pkg-cache
