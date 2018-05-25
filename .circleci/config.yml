@@ -14,15 +14,33 @@ jobs:
 
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-pkg-cache
 
       - run: go get -v -t -d ./...
-      - run: go test -v ./...
+      - run: go get github.com/jstemmer/go-junit-report
+      - run: mkdir -p .test_results
+      - run: |
+          trap "go-junit-report <.test_results/go-test.out > .test_results/go-test-report.xml" EXIT
+          go test -v ./... | tee .test_results/go-test.out
+
+      - save_cache:
+          key: v1-pkg-cache
+          paths:
+            - "/go/pkg"
+
+      - store_test_results:
+          path: .test_results
 
   build:
     <<: *docker_golang
 
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-pkg-cache
 
       # set up workspace
       - run: mkdir -p /tmp/workspace
