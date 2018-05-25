@@ -49,8 +49,6 @@ jobs:
       - run: mkdir -p /tmp/workspace
 
       # gox for cross-compilation
-      - run: GOOS=windows GOARCH=amd64 go install
-      - run: GOOS=windows GOARCH=386 go install
       - run: go get github.com/mitchellh/gox
       - run: go get -v -t -d ./...
       - run: gox -osarch darwin/amd64 -osarch windows/amd64 -osarch windows/386 -osarch linux/amd64
@@ -60,8 +58,8 @@ jobs:
           root: /tmp/workspace
           paths:
             - does_it_redirect_darwin_amd64
-            - does_it_redirect_windows_amd64
-            - does_it_redirect_windows_386
+            - does_it_redirect_windows_amd64.exe
+            - does_it_redirect_windows_386.exe
             - does_it_redirect_linux_amd64
 
   release:
