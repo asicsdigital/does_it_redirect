@@ -27,7 +27,7 @@ func main() {
 
 
   app := cli.NewApp()
-  app.Name = "does_it_redirect"
+  app.Name = "will_it_redirect"
   app.Usage = "test web redirects"
   app.Version = "0.1.0"
   app.EnableBashCompletion = true

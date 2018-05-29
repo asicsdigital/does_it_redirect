@@ -5,7 +5,7 @@
 docker: &docker_golang
   docker:
     - image: circleci/golang:1.9
-  working_directory: /go/src/github.com/asicsdigital/does_it_redirect
+  working_directory: /go/src/github.com/asicsdigital/will_it_redirect
 
 version: 2
 jobs:
@@ -52,15 +52,15 @@ jobs:
       - run: go get github.com/mitchellh/gox
       - run: go get -v -t -d ./...
       - run: gox -osarch darwin/amd64 -osarch windows/amd64 -osarch windows/386 -osarch linux/amd64
-      - run: cp does_it_redirect_* /tmp/workspace
+      - run: cp will_it_redirect_* /tmp/workspace
 
       - persist_to_workspace:
           root: /tmp/workspace
           paths:
-            - does_it_redirect_darwin_amd64
-            - does_it_redirect_windows_amd64.exe
-            - does_it_redirect_windows_386.exe
-            - does_it_redirect_linux_amd64
+            - will_it_redirect_darwin_amd64
+            - will_it_redirect_windows_amd64.exe
+            - will_it_redirect_windows_386.exe
+            - will_it_redirect_linux_amd64
 
   release:
     <<: *docker_golang
